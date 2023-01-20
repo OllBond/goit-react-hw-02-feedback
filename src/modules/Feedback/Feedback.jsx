@@ -1,11 +1,21 @@
 import { Component } from 'react';
 import css from './feedback.module.css';
-
+import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
+import Statistics from './Statistics/Statistics';
 class Feedback extends Component {
   state = {
     good: 0,
     neutral: 0,
     bad: 0,
+  };
+  //   функція, яка змінює state
+  //   name - це good, neutral, bad
+  onLeaveFeedback = feedback => {
+    // якщо нове значення залежить від попереднього - передається call-back
+    this.setState(prevState => {
+      // вираховувані властивості об'єкта
+      return { [feedback]: prevState[feedback] + 1 };
+    });
   };
   countTotalFeedback() {
     // деструктуризація об'єкту state
@@ -25,14 +35,7 @@ class Feedback extends Component {
     // toFixed повертає строку - тому Number
     return Number(result);
   }
-  //   name - це good, neutral, bad
-  leaveFeedback(name) {
-    // якщо нове значення залежить від попереднього - передається call-back
-    this.setState(prevState => {
-      // вираховувані властивості об'єкта
-      return { [name]: prevState[name] + 1 };
-    });
-  }
+
   render() {
     const total = this.countTotalFeedback();
     const positiveFeedback = this.countPositiveFeedbackPercentage('good');
@@ -40,36 +43,15 @@ class Feedback extends Component {
     return (
       <div>
         <h3 className={css.titleFeedback}>Please leave feedback</h3>
-        <div className={css.btnWrapper}>
-          <button
-            className={css.btnFeedback}
-            onClick={() => this.leaveFeedback('good')}
-          >
-            Good
-          </button>
-          <button
-            className={css.btnFeedback}
-            onClick={() => this.leaveFeedback('neutral')}
-          >
-            Neutral
-          </button>
-          <button
-            className={css.btnFeedback}
-            onClick={() => this.leaveFeedback('bad')}
-          >
-            Bad
-          </button>
-        </div>
-        <div>
-          <h4 className={css.titleStatistics}>Statistics</h4>
-          <p className={css.parFeedback}>Good: {good}</p>
-          <p className={css.parFeedback}>Neutral: {neutral}</p>
-          <p className={css.parFeedback}>Bad: {bad}</p>
-          <p className={css.parFeedback}>Total: {total}</p>
-          <p className={css.parFeedback}>
-            Positive feedback: {positiveFeedback}
-          </p>
-        </div>
+        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+        <h4 className={css.titleStatistics}>Statistics</h4>
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={total}
+          positiveFeedback={positiveFeedback}
+        />
       </div>
     );
   }
