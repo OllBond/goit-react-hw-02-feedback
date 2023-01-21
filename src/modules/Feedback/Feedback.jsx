@@ -2,6 +2,7 @@ import { Component } from 'react';
 import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
+import Notification from './Notification/Notification';
 class Feedback extends Component {
   state = {
     good: 0,
@@ -10,8 +11,7 @@ class Feedback extends Component {
   };
   // перетворення об'єкта в масив
   statePropNames = Object.keys(this.state);
-  //   функція, яка змінює state
-  //   name - це good, neutral, bad
+  //   функція, яка змінює state, feedback - це good, neutral, bad
   onLeaveFeedback = feedback => {
     // якщо нове значення залежить від попереднього - передається call-back
     this.setState(prevState => {
@@ -59,6 +59,7 @@ class Feedback extends Component {
             positiveFeedback={positiveFeedback}
           />
         </Section>
+        <Notification message="There is no feedback" />
       </>
     );
   }

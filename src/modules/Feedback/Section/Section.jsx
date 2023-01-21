@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import css from '../feedback.module.css';
 const Section = ({ children, title }) => {
   return (
@@ -9,3 +10,7 @@ const Section = ({ children, title }) => {
 };
 
 export default Section;
+Section.propTypes = {
+  children: PropTypes.element.isRequired,
+  title: PropTypes.string.isRequired,
+};
