@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import css from './feedback.module.css';
+import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 class Feedback extends Component {
@@ -43,21 +43,23 @@ class Feedback extends Component {
     const positiveFeedback = this.countPositiveFeedbackPercentage('good');
     const { good, neutral, bad } = this.state;
     return (
-      <div>
-        <h3 className={css.titleFeedback}>Please leave feedback</h3>
-        <FeedbackOptions
-          options={this.statePropNames}
-          onLeaveFeedback={this.onLeaveFeedback}
-        />
-        <h4 className={css.titleStatistics}>Statistics</h4>
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={total}
-          positiveFeedback={positiveFeedback}
-        />
-      </div>
+      <>
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            options={this.statePropNames}
+            onLeaveFeedback={this.onLeaveFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          <Statistics
+            good={good}
+            neutral={neutral}
+            bad={bad}
+            total={total}
+            positiveFeedback={positiveFeedback}
+          />
+        </Section>
+      </>
     );
   }
 }
