@@ -8,6 +8,8 @@ class Feedback extends Component {
     neutral: 0,
     bad: 0,
   };
+  // перетворення об'єкта в масив
+  statePropNames = Object.keys(this.state);
   //   функція, яка змінює state
   //   name - це good, neutral, bad
   onLeaveFeedback = feedback => {
@@ -43,7 +45,10 @@ class Feedback extends Component {
     return (
       <div>
         <h3 className={css.titleFeedback}>Please leave feedback</h3>
-        <FeedbackOptions onLeaveFeedback={this.onLeaveFeedback} />
+        <FeedbackOptions
+          options={this.statePropNames}
+          onLeaveFeedback={this.onLeaveFeedback}
+        />
         <h4 className={css.titleStatistics}>Statistics</h4>
         <Statistics
           good={good}

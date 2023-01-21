@@ -1,8 +1,24 @@
 import css from '../feedback.module.css';
-const FeedbackOptions = ({ onLeaveFeedback, onClick }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div className={css.btnWrapper}>
-      <button
+      {options.map(option => {
+        return (
+          <button
+            className={css.btnFeedback}
+            key={option}
+            onClick={() => onLeaveFeedback(option)}
+            type="button"
+          >
+            {option}
+          </button>
+        );
+      })}
+    </div>
+  );
+};
+export default FeedbackOptions;
+/* <button
         className={css.btnFeedback}
         onClick={() => onLeaveFeedback('good')}
         text="good"
@@ -25,8 +41,4 @@ const FeedbackOptions = ({ onLeaveFeedback, onClick }) => {
         type="button"
       >
         Bad
-      </button>
-    </div>
-  );
-};
-export default FeedbackOptions;
+      </button> */
