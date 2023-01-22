@@ -3,7 +3,9 @@ import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 import Notification from './Notification/Notification';
-class Feedback extends Component {
+// import Feedback from './Feedback/Feedback';
+// import css from './Feedback/App.css';
+export class App extends Component {
   state = {
     Good: 0,
     Neutral: 0,
@@ -68,4 +70,3 @@ class Feedback extends Component {
     );
   }
 }
-export default Feedback;

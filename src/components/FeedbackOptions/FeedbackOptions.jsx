@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import css from '../feedback.module.css';
+import css from './FeedbackOptions.module.css';
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
     <div className={css.btnWrapper}>
