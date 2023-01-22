@@ -3,8 +3,6 @@ import Section from './Section/Section';
 import FeedbackOptions from './FeedbackOptions/FeedbackOptions';
 import Statistics from './Statistics/Statistics';
 import Notification from './Notification/Notification';
-// import Feedback from './Feedback/Feedback';
-// import css from './Feedback/App.css';
 export class App extends Component {
   state = {
     Good: 0,
@@ -34,7 +32,7 @@ export class App extends Component {
     }
     // this.state.good
     const value = this.state[propName];
-    // toFixed округлення 2 значення після коми
+    // toFixed округлення 2 значень після коми
     const result = ((value / total) * 100).toFixed(2);
     // toFixed повертає строку - тому Number
     return Number(result);
